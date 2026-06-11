@@ -86,9 +86,7 @@ const Hero = () => {
           className="text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-up"
           style={{ animationDelay: '240ms', color: 'var(--text-secondary)' }}
         >
-          I write clean code and care deeply about how it looks. I'm a final-year Computer Science student
-          who builds things from the ground up — whether that's a Java data-compression engine, a memory
-          card game in CSS, or a production React app.
+          I write clean, efficient code with a strong focus on delivering exceptional user experiences. As a final-year Computer Science student, I specialize in building scalable applications from the ground up — ranging from robust Java backend engines to dynamic, production-ready React applications.
         </p>
 
         {/* CTA buttons */}

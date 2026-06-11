@@ -22,15 +22,6 @@ export const certificates = [
     icon: '🏆',
   },
   {
-    title: 'Smart India Hackathon 2025',
-    subtitle: 'Participation in Internal Hackathon',
-    issuer: 'MoE Innovation Cell / NHCE',
-    date: 'Sept 2025',
-    image: sihImg,
-    verifyUrl: null,
-    icon: '💡',
-  },
-  {
     title: 'AWS Cloud Technical Essentials',
     subtitle: 'Authorized by Amazon Web Services',
     issuer: 'Coursera × AWS',
@@ -56,6 +47,15 @@ export const certificates = [
     image: googlePrmImg,
     verifyUrl: 'https://coursera.org/verify/SLGXMGKSK1Q2',
     icon: '✍️',
+  },
+  {
+    title: 'Smart India Hackathon 2025',
+    subtitle: 'Participation in Internal Hackathon',
+    issuer: 'MoE Innovation Cell / NHCE',
+    date: 'Sept 2025',
+    image: sihImg,
+    verifyUrl: null,
+    icon: '💡',
   },
   {
     title: 'Cloud Computing & Distributed Systems',

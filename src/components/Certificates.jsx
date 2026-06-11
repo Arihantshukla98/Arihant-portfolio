@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { certificates } from '../siteData';
 
 // ─── Lightbox Modal ────────────────────────────────────────────────────────
@@ -10,9 +11,9 @@ const Lightbox = ({ cert, onClose }) => {
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
       onClick={onClose}
     >
@@ -67,7 +68,8 @@ const Lightbox = ({ cert, onClose }) => {
           Press ESC or click outside to close
         </p>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
@@ -84,6 +86,7 @@ const CertFallback = ({ icon, title, issuer }) => (
 const Certificates = () => {
   const [imageErrors, setImageErrors] = useState({});
   const [expanded, setExpanded] = useState(null); // holds the cert object to show in lightbox
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const handleImgError = (idx) => {
     setImageErrors(prev => ({ ...prev, [idx]: true }));
@@ -119,11 +122,11 @@ const Certificates = () => {
 
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-            {certificates.map((cert, idx) => (
+            {certificates.slice(0, visibleCount).map((cert, idx) => (
               <article
                 key={idx}
-                className="glass-card overflow-hidden group transition-all duration-300 hover:-translate-y-2 flex flex-col"
-                style={{ borderRadius: 'var(--radius)' }}
+                className="glass-card overflow-hidden group transition-all duration-300 hover:-translate-y-2 flex flex-col animate-fade-up"
+                style={{ borderRadius: 'var(--radius)', animationDelay: `${(idx % 4) * 150}ms` }}
               >
                 {/* Top accent bar */}
                 <div className="h-1 w-full flex-shrink-0" style={{ background: 'var(--accent)' }} />
@@ -194,6 +197,33 @@ const Certificates = () => {
               </article>
             ))}
           </div>
+
+          {/* Load More Button */}
+          {certificates.length > 4 && (
+            <div className="mt-12 flex justify-center animate-fade-up" style={{ animationDelay: '500ms' }}>
+              <button
+                onClick={() => setVisibleCount(prev => prev === 4 ? certificates.length : 4)}
+                className="btn-primary cursor-pointer border-none font-semibold transition-all duration-300"
+                style={{ fontFamily: 'inherit' }}
+              >
+                {visibleCount === 4 ? (
+                  <>
+                    Explore All Credentials
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    Show Highlights Only
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </>
