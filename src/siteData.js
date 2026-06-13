@@ -88,6 +88,20 @@ export const certificates = [
 
 export const projects = [
   {
+    id: 'campusconnect',
+    title: 'CampusConnect',
+    subtitle: 'Unified Campus Management Platform',
+    description: 'A comprehensive MERN stack web app designed to digitize college operations. Features include a Lost & Found board with Cloudinary image uploads, interactive Event Management, an Academic Resource Hub for sharing study materials, and secure Role-Based Access Control (RBAC) using JWT.',
+    tags: ['React (Vite)', 'Node.js', 'MongoDB', 'TailwindCSS'],
+    accent: 'from-emerald-400 to-teal-500',
+    github: 'https://github.com/Arihantshukla98/CampusConnect',
+    metrics: [
+      { label: 'Stack', value: 'MERN' },
+      { label: 'Auth', value: 'JWT RBAC' },
+      { label: 'Storage', value: 'Cloudinary' },
+    ],
+  },
+  {
     id: 'compression',
     title: 'Data Compression Engine',
     subtitle: 'Java • File I/O • Algorithms',
@@ -99,20 +113,6 @@ export const projects = [
       { label: 'Language', value: 'Java' },
       { label: 'Algorithm', value: 'Huffman' },
       { label: 'Type', value: 'CLI Tool' },
-    ],
-  },
-  {
-    id: 'memory',
-    title: 'Memory Card Game',
-    subtitle: 'CSS • JavaScript • DOM',
-    description: 'A 3D card-flip memory matching game built entirely with CSS transforms and vanilla JS. Smooth flip animations, shuffle logic, a move counter, and a win-detection system. No frameworks.',
-    tags: ['CSS3', 'JavaScript', 'DOM', 'Animations'],
-    accent: 'from-blue-400 to-cyan-400',
-    github: 'https://github.com/Arihantshukla98/MemoryCardGame',
-    metrics: [
-      { label: 'Language', value: 'CSS + JS' },
-      { label: 'Physics', value: '3D Flip' },
-      { label: 'Type', value: 'Browser Game' },
     ],
   },
   {
