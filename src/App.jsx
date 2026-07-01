@@ -5,14 +5,17 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Certificates from './components/Certificates';
+import ResumePage from './components/ResumePage';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
   // Persist theme across sessions
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio-theme') || 'dark';
+    return localStorage.getItem('portfolio-theme') || 'light';
   });
+  
+  const [currentPage, setCurrentPage] = useState('home');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -38,14 +41,20 @@ function App() {
         }}
       />
 
-      <Header theme={theme} onToggleTheme={toggleTheme} />
+      <Header theme={theme} onToggleTheme={toggleTheme} setCurrentPage={setCurrentPage} currentPage={currentPage} />
 
       <main className="relative z-10">
-        <Hero />
-        <About />
-        <Projects />
-        <Certificates />
-        <Contact />
+        {currentPage === 'home' ? (
+          <>
+            <Hero />
+            <About />
+            <Projects />
+            <Certificates />
+            <Contact />
+          </>
+        ) : (
+          <ResumePage />
+        )}
       </main>
 
       <Footer />

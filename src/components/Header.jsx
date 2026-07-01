@@ -14,7 +14,7 @@ const MoonIcon = () => (
   </svg>
 );
 
-const Header = ({ theme, onToggleTheme }) => {
+const Header = ({ theme, onToggleTheme, setCurrentPage, currentPage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const isDark = theme === 'dark';
@@ -48,24 +48,33 @@ const Header = ({ theme, onToggleTheme }) => {
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group" aria-label="Arihant Shukla — Home">
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); setCurrentPage('home'); window.scrollTo(0,0); }}
+            className="flex items-center gap-2.5 group" 
+            aria-label="Arihant Shukla — Home"
+          >
             <span
               className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold mono transition-all"
-              style={{ background: 'var(--accent)', color: '#fff' }}
+              style={{ background: 'var(--accent)', color: 'var(--text-on-accent)' }}
             >
               A
             </span>
-            <span className="font-semibold text-sm tracking-wide" style={{ color: 'var(--text-primary)' }}>
+            <span className="font-semibold text-lg tracking-tight group-hover:opacity-80 transition-opacity" style={{ color: 'var(--text-primary)' }}>
               Arihant<span style={{ color: 'var(--accent)' }}>.</span>
             </span>
           </a>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map(link => (
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => {
+                  if (currentPage !== 'home') {
+                    setCurrentPage('home');
+                  }
+                }}
                 className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
                 style={{ color: 'var(--text-secondary)' }}
                 onMouseEnter={e => {
@@ -80,6 +89,22 @@ const Header = ({ theme, onToggleTheme }) => {
                 {link.name}
               </a>
             ))}
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); setCurrentPage('resume'); }}
+              className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
+              style={{ color: currentPage === 'resume' ? 'var(--text-primary)' : 'var(--text-secondary)' }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = 'var(--text-primary)';
+                e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = currentPage === 'resume' ? 'var(--text-primary)' : 'var(--text-secondary)';
+                e.currentTarget.style.background = 'transparent';
+              }}
+            >
+              Resume
+            </a>
           </nav>
 
           {/* Actions */}
@@ -162,7 +187,10 @@ const Header = ({ theme, onToggleTheme }) => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  if (currentPage !== 'home') setCurrentPage('home');
+                  setMobileOpen(false);
+                }}
                 className="py-4 px-5 rounded-xl text-lg font-medium transition-all"
                 style={{
                   color: 'var(--text-primary)',
@@ -173,6 +201,22 @@ const Header = ({ theme, onToggleTheme }) => {
                 {link.name}
               </a>
             ))}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentPage('resume');
+                setMobileOpen(false);
+              }}
+              className="py-4 px-5 rounded-xl text-lg font-medium transition-all text-left"
+              style={{
+                color: currentPage === 'resume' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)',
+                border: '1px solid var(--surface-border)',
+              }}
+            >
+              Resume
+            </a>
             {/* Theme toggle in mobile drawer */}
             <button
               onClick={() => { onToggleTheme(); setMobileOpen(false); }}

@@ -35,20 +35,20 @@ const projects = [
     ],
   },
   {
-    id: 'compression',
-    title: 'Data Compression Engine',
-    subtitle: 'Java • File I/O • Algorithms',
+    id: 'nagarseva',
+    title: 'NagarSeva AI',
+    subtitle: 'Full-Stack Smart Civic Platform',
     description:
-      'A command-line Java tool that compresses and decompresses files using Huffman coding. Built from scratch — encoding tree, byte-level bit manipulation, and a clean CLI interface. No external libraries.',
-    tags: ['Java', 'Algorithms', 'File I/O', 'CLI'],
-    accent: 'from-orange-400 to-red-500',
-    accentH: 20,
-    github: 'https://github.com/Arihantshukla98/Data-Compression-and-Decompression-Tool',
-    live: null,
+      'An AI-powered civic issue reporting platform that enables citizens to report, track, and manage municipal complaints. Features AI-based complaint categorization, secure authentication, image uploads, role-based dashboards, and real-time complaint management through a responsive full-stack application.',
+    tags: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Gemini API'],
+    accent: 'from-blue-400 to-indigo-500',
+    accentH: 220,
+    github: null,
+    live: 'https://nagarseva-rq5o.onrender.com/link',
     metrics: [
-      { label: 'Language', value: 'Java' },
-      { label: 'Algorithm', value: 'Huffman' },
-      { label: 'Type', value: 'CLI Tool' },
+      { label: 'Frontend', value: 'React.js' },
+      { label: 'Backend', value: 'Node.js' },
+      { label: 'AI Integration', value: 'Gemini API' },
     ],
   },
 ];
@@ -109,8 +109,6 @@ const Projects = () => {
               onMouseLeave={() => setHovered(null)}
               onClick={() => setActiveProject(project)}
             >
-              {/* Top accent bar */}
-              <div className={`h-1 bg-gradient-to-r ${project.accent} rounded-t-xl`} />
 
               {/* Metrics row */}
               <div
@@ -343,28 +341,29 @@ const Projects = () => {
                   </div>
                 </div>
               ) : (
-                /* Simulated Huffman Data Compression Terminal CLI output */
-                <div className="w-full h-full rounded-2xl border border-[var(--surface-border)] bg-[#050608] p-6 font-mono text-[10px] sm:text-xs flex flex-col gap-4 shadow-2xl relative overflow-hidden animate-fade-in">
-                  <div className="flex justify-between items-center border-b border-white/10 pb-3 text-[var(--text-secondary)]">
-                    <span>HUFFMAN CODING CONSOLE</span>
-                    <span>java-cli-module</span>
+                /* NagarSeva AI Live Website Preview */
+                <div className="w-full h-full flex flex-col gap-3 animate-fade-in">
+                  <div className="flex items-center justify-between text-xs text-[var(--text-secondary)] bg-[rgba(255,255,255,0.02)] px-4 py-2.5 rounded-xl border border-[var(--surface-border)]">
+                    <span className="mono flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      Live Preview: nagarseva-rq5o.onrender.com
+                    </span>
+                    <a
+                      href={activeProject.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--accent)] hover:underline flex items-center gap-1 font-semibold cursor-pointer"
+                    >
+                      Open Link ↗
+                    </a>
                   </div>
-                  <div className="flex-1 flex flex-col gap-2 text-sky-400 leading-relaxed pr-2">
-                    <p className="text-[var(--text-primary)]">$ java -jar huffman-compress.jar -c report.pdf</p>
-                    <p className="text-[var(--text-muted)]">[SYSTEM] Reading report.pdf (512.00 KB)...</p>
-                    <p className="text-[var(--text-muted)]">[SYSTEM] Generating character frequency counts...</p>
-                    <p>[SYSTEM] Constructing binary tree encoding structure...</p>
-                    <p>[SYSTEM] Bit-packing byte arrays recursively...</p>
-                    <div className="bg-white/5 p-3 rounded-lg border border-white/5 my-1 text-white">
-                      <p className="font-semibold mb-1">Compression Statistics:</p>
-                      <p>• Original File Size   : 512.00 KB</p>
-                      <p>• Compressed File Size : 245.76 KB</p>
-                      <p className="text-emerald-400">• Space Savings        : 52.00% saved</p>
-                    </div>
-                    <p className="text-emerald-400 font-bold">[SUCCESS] File compressed successfully in 43ms. Output: report.huff</p>
-                  </div>
-                  <div className="border-t border-white/10 pt-3 text-[var(--text-muted)]">
-                    <span>Module: Data-Compression-and-Decompression-Tool</span>
+                  <div className="flex-1 rounded-2xl overflow-hidden border border-[var(--surface-border)] bg-[var(--surface)] relative shadow-inner">
+                    <iframe
+                      src={activeProject.live}
+                      className="w-full h-full border-none bg-white"
+                      title="NagarSeva AI Live Website Preview"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               )}

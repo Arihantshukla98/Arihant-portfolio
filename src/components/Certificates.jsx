@@ -129,7 +129,7 @@ const Certificates = () => {
                 onClick={() => setViewMode('dome')}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer border-none ${
                   viewMode === 'dome'
-                    ? 'bg-[var(--accent)] text-white'
+                    ? 'bg-[var(--accent)] text-[var(--text-on-accent)]'
                     : 'bg-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                 }`}
               >
@@ -142,7 +142,7 @@ const Certificates = () => {
                 onClick={() => setViewMode('grid')}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer border-none ${
                   viewMode === 'grid'
-                    ? 'bg-[var(--accent)] text-white'
+                    ? 'bg-[var(--accent)] text-[var(--text-on-accent)]'
                     : 'bg-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                 }`}
               >
@@ -201,7 +201,7 @@ const Certificates = () => {
                               className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all active:scale-95 cursor-pointer border-none"
                               style={{
                                 background: 'var(--accent)',
-                                color: '#fff',
+                                color: 'var(--text-on-accent)',
                                 boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
                               }}
                               onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
